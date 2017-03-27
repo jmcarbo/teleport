@@ -1,0 +1,17 @@
+version: '3'
+services:
+  teleport:
+    image: jmcarbo/teleport
+    command: teleport start -c /etc/teleport/teleport.yml
+    #command: teleport start 
+    hostname: teleport
+    ports:
+      - "3080:3080" 
+    volumes:
+      - $PWD/data:/var/lib/teleport
+      - $PWD/etcteleport:/etc/teleport
+    networks:
+      - apps
+networks:
+  apps:
+    external: true
